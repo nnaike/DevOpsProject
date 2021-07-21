@@ -1,8 +1,7 @@
 ---
 - hosts: all
   become: true
-  vars_files:
-    - vars/default.yml
+  become_user: root
 
   tasks:
     - name: Install aptitude using apt
@@ -44,8 +43,8 @@
       with_sequence: count= 2
       
     - webapp: port mapping
-       image: devopsedu/webapp
-       ports:
+      image: devopsedu/webapp
+      ports:
         - 8888:80
-       links:
+      links:
         - devopsedu/webapp
